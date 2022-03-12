@@ -1,10 +1,13 @@
 {
   "name": "snyk-data",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.js",
   "type": "module",
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "SNYK_API_TOKEN=test jest --coverage"
