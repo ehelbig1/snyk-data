@@ -1,0 +1,26 @@
+{
+    "filters": {
+      "name": "snyk/goof",
+      "origin": "github",
+      "type": "maven",
+      "tags": {
+        "includes": [
+          {
+            "key": "example-tag-key",
+            "value": "example-tag-value"
+          }
+        ]
+      },
+      "attributes": {
+        "criticality": [
+          "high"
+        ],
+        "environment": [
+          "backend"
+        ],
+        "lifecycle": [
+          "development"
+        ]
+      }
+    }
+  }
