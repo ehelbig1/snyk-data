@@ -1,6 +1,6 @@
 {
   "name": "snyk-data",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.js",
@@ -12,6 +12,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehelbig1/snyk-data",
+    "email": "evan@evanhelbig.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehelbig1/snyk-data"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
