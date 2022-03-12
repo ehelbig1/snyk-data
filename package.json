@@ -1,8 +1,9 @@
 {
   "name": "snyk-data",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
