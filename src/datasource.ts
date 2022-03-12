@@ -4,7 +4,7 @@ import ListOrgsResponse from './model/listOrgsResponse.js';
 import ListProjectsByOrgResponse from './model/listProjectsByOrgResponse.js';
 import ListIssuesByProjectResponse from './model/listIssuesByProject.js';
 
-import { ListProjectsByOrgProperties, ListIssuesByProjectProperties } from '../src/properties/index.js';
+import { ListProjectsByOrgProperties, ListIssuesByProjectProperties } from './properties/index.js';
 
 interface IDatasource {
     listOrgs: () => Promise<ListOrgsResponse>;
@@ -42,7 +42,7 @@ export class Datasource implements IDatasource {
 
     async listProjectsByOrg(orgId: string, properties: ListProjectsByOrgProperties): Promise<ListProjectsByOrgResponse> {
         try {
-            const response = await axios.post<ListProjectsByOrgResponse>(`${this.baseUrl}/v1/org/${orgId}/projects`, properties, {
+            const response = await axios.post<ListProjectsByOrgResponse>(`${this.baseUrl}/v1/org/${orgId}/projects`, properties.properties(), {
                 headers: {
                     Authorization: `token ${this.apiToken}`,
                 }
