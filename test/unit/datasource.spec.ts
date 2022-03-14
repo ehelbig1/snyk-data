@@ -7,6 +7,7 @@ import { ListProjectsByOrgProperties, ListIssuesByProjectProperties } from '../.
 import mockedListOrgsResponse from '../mock/listOrgsResponse.json';
 import mockedListProjectsByOrgResponse from '../mock/listProjectsByOrgResponse.json';
 import mockedListIssuesByProjectResponse from '../mock/listIssuesByProjectResponse.json';
+import mockedListProjectResponse from '../mock/listProjectResponse.json';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -30,6 +31,15 @@ it('should return projects', async () => {
     const response = await datasource.listProjectsByOrg('test', properties);
 
     expect(response).toEqual(mockedListProjectsByOrgResponse);
+})
+
+it('should return project', async () => {
+    mockedAxios.get.mockResolvedValueOnce({ data: mockedListProjectResponse });
+
+    const datasource = new Datasource();
+    const response = await datasource.listProject('test', 'test');
+
+    expect(response).toEqual(mockedListProjectResponse);
 })
 
 it('should return issues for project', async () => {

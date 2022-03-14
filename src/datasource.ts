@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import ListOrgsResponse from './model/listOrgsResponse.js';
+import ListProjectResponse from './model/listProjectResponse.js';
 import ListProjectsByOrgResponse from './model/listProjectsByOrgResponse.js';
 import ListIssuesByProjectResponse from './model/listIssuesByProject.js';
 
@@ -8,6 +9,7 @@ import { ListProjectsByOrgProperties, ListIssuesByProjectProperties } from './pr
 
 interface IDatasource {
     listOrgs: () => Promise<ListOrgsResponse>;
+    listProject: (orgId: string, projectId: string) => Promise<ListProjectResponse>;
     listProjectsByOrg: (orgId: string, properties: ListProjectsByOrgProperties) => Promise<ListProjectsByOrgResponse>;
     listIssuesByProject: (orgId: string, projectId: string, properties: ListIssuesByProjectProperties) => Promise<ListIssuesByProjectResponse>;
 }
@@ -34,6 +36,22 @@ export class Datasource implements IDatasource {
 
             const orgs: ListOrgsResponse = response.data;
             return orgs;
+        } catch (error) {
+            if (axios.isAxiosError(error)) throw error.message;
+            else throw new Error(`Oops, something went wrong\n${error}`);
+        }
+    }
+
+    async listProject(orgId: string, projectId: string): Promise<ListProjectResponse> {
+        try {
+            const response = await axios.get<ListProjectResponse>(`${this.baseUrl}/v1/org/${orgId}/project/${projectId}`, {
+                headers: {
+                    Authorization: `token ${this.apiToken}`
+                }
+            });
+
+            const project = response.data;
+            return project;
         } catch (error) {
             if (axios.isAxiosError(error)) throw error.message;
             else throw new Error(`Oops, something went wrong\n${error}`);
